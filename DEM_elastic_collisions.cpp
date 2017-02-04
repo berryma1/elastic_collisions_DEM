@@ -17,7 +17,7 @@ const double PI = 3.14159;
 const double sphere_diameter = 0.5;
 const double sphere_mass = 1.0;
 
-void detect_wall_collisions(vector<vector<double>> &states, int n) {
+void detect_wall_collisions(vector<vector<double> > &states, int n) {
 	// box height = n + 1;
 	// box width = n + 1;
 	for (int i = 0; i < n; i++) {
@@ -42,8 +42,8 @@ void detect_wall_collisions(vector<vector<double>> &states, int n) {
 		}
 	}
 }
-void calculate_new_velocities(vector<vector<double>> &states, int i, int j) {
-	cout << "Spheres " << i << " and " << j << " collided\n";
+void calculate_new_velocities(vector<vector<double> > &states, int i, int j) {
+	cout << "Spheres " << i+1 << " and " << j+1 << " collided\n";
 	// calculate the velocities (magnitude and direction) of spheres i and j pre-collision
 	double sphere_i_vel_mag = sqrt(pow(states[i][2], 2) + pow(states[i][3], 2));
 	double sphere_j_vel_mag = sqrt(pow(states[j][2], 2) + pow(states[j][3], 2));
@@ -72,7 +72,7 @@ void calculate_new_velocities(vector<vector<double>> &states, int i, int j) {
 
 	double post_collision_energy = 0.5*sphere_mass*(pow(states[i][2], 2) + pow(states[i][3], 2) + pow(states[j][2], 2) + pow(states[j][3], 2));
 }
-void detect_sphere_collisions(vector<vector<double>> &states, int n, int &count) {
+void detect_sphere_collisions(vector<vector<double> > &states, int n, int &count) {
 	double distance;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++) {
@@ -85,7 +85,7 @@ void detect_sphere_collisions(vector<vector<double>> &states, int n, int &count)
 		}
 	}
 }
-void write_positions(vector<vector<double>> states, int n, ofstream& file_name) {
+void write_positions(vector<vector<double> > states, int n, ofstream& file_name) {
 	for (int i = 0; i < n; i++) {
 		file_name << states[i][0] << ',' << states[i][1] << ',';
 	}
@@ -113,7 +113,7 @@ int main()
 
 	// represent the position and velocity of n spheres
 	// sphere_states = {px, py, vx, vy}
-	vector<vector<double>> sphere_states;
+	vector<vector<double> > sphere_states;
 	sphere_states.resize(n, vector<double>(4, 0));
 	
 	for (int i = 0; i < n; i++) {
